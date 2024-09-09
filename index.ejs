@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Toilet Cleanliness Ratings</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.3/dist/flowbite.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-color: #f0f8ff; /* Light blue background */
+    }
+
+    .smiley-btn {
+      cursor: pointer;
+      transition: transform 0.2s;
+      font-size: 2.5rem; /* Adjust size of smiley buttons for better fit */
+    }
+
+    .smiley-btn.selected {
+      transform: scale(1.2);
+      border: 2px solid #007BFF;
+      border-radius: 50%;
+    }
+
+    .navbar {
+      margin-bottom: 20px;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+    }
+
+    .bg-dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.bg-light {
+  background-color: rgb(255, 255, 255);
+  color: #000;
+}
+
+.navbar-dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar-light {
+  background-color: #fff;
+  color: #000;
+}
+  </style>
+</head>
+<body class="bg-light">
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-200" id="page-header">A/D TIV Toilet Cleanliness Ratings</h1>
+      
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="theme-toggle text-xl">
+        <i class="fas fa-sun"></i>
+      </button>
+
+      <!-- Language Selector -->
+      <div class="relative">
+        <button class="bg-white text-black font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="language-btn">
+          <i class="fas fa-language"></i> <span id="language-name">English</span>
+        </button>
+        <div class="absolute hidden mt-2 py-2 w-48 bg-white rounded-lg shadow-xl language-dropdown">
+          <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-400" data-lang="en"><img src="https://flagcdn.com/w20/gb.png"> English</a>
+          <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-400" data-lang="sr"><img src="https://flagcdn.com/w20/rs.png"> Serbian</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Rating Form -->
+  <div class="flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-blue-600" id="rating-prompt">Please rate the toilet before you leave:</h2>
+  
+      <form action="/api/ratings" method="POST" class="space-y-4">
+        <div>
+          <label for="flightNumber" class="block font-medium text-gray-700 mb-2" id="flight-number-label">Flight Number</label>
+          <input type="text" id="flightNumber" name="flightNumber" class="border border-gray-300 rounded-md px-4 py-2 w-full" required>
+        </div>
+  
+        <!-- New Rating Sections -->
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="cleanliness-label">Cleanliness</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="cleanliness">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="cleanliness">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="cleanliness">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="cleanliness">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="cleanliness">&#128516;</button>
+            <input type="hidden" id="cleanliness" name="cleanliness" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="general-cleanliness-label">Opća čistoća</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="general-cleanliness">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="general-cleanliness">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="general-cleanliness">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="general-cleanliness">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="general-cleanliness">&#128516;</button>
+            <input type="hidden" id="general-cleanliness" name="general-cleanliness" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="toilet-hygiene-label">Higijena WC školjke</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="toilet-hygiene">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="toilet-hygiene">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="toilet-hygiene">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="toilet-hygiene">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="toilet-hygiene">&#128516;</button>
+            <input type="hidden" id="toilet-hygiene" name="toilet-hygiene" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="sanitary-supplies-label">Sanitetski pribor</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="sanitary-supplies">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="sanitary-supplies">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="sanitary-supplies">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="sanitary-supplies">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="sanitary-supplies">&#128516;</button>
+            <input type="hidden" id="sanitary-supplies" name="sanitary-supplies" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="odor-label">Miris</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="odor">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="odor">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="odor">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="odor">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="odor">&#128516;</button>
+            <input type="hidden" id="odor" name="odor" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="maintenance-label">Održavanje</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="maintenance">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="maintenance">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="maintenance">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="maintenance">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="maintenance">&#128516;</button>
+            <input type="hidden" id="maintenance" name="maintenance" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="accessibility-label">Pristupačnost</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="accessibility">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="accessibility">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="accessibility">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="accessibility">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="accessibility">&#128516;</button>
+            <input type="hidden" id="accessibility" name="accessibility" value="" required>
+          </div>
+        </div>
+  
+        <div>
+          <label class="block font-medium text-gray-700 mb-2" id="visual-aspects-label">Vizualni aspekti</label>
+          <div class="flex justify-center space-x-2">
+            <button type="button" class="smiley-btn" data-rating="1" data-aspect="visual-aspects">&#128533;</button>
+            <button type="button" class="smiley-btn" data-rating="2" data-aspect="visual-aspects">&#128528;</button>
+            <button type="button" class="smiley-btn" data-rating="3" data-aspect="visual-aspects">&#128522;</button>
+            <button type="button" class="smiley-btn" data-rating="4" data-aspect="visual-aspects">&#128515;</button>
+            <button type="button" class="smiley-btn" data-rating="5" data-aspect="visual-aspects">&#128516;</button>
+            <input type="hidden" id="visual-aspects" name="visual-aspects" value="" required>
+          </div>
+        </div>
+  
+        <button type="submit" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <script>
+    const translations = {
+      en: {
+        pageTitle: 'A/D TIV Toilet Cleanliness Ratings',
+        header: 'A/D TIV Toilet Cleanliness Ratings',
+        ratingPrompt: 'Please rate the cleanliness and quality of the toilet before you leave:',
+        flightNumberLabel: 'Flight Number',
+        cleanlinessLabel: 'Cleanliness',
+        generalCleanlinessLabel: 'General Cleanliness',
+        toiletHygieneLabel: 'Toilet Hygiene',
+        sanitarySuppliesLabel: 'Sanitary Supplies',
+        odorLabel: 'Odor',
+        maintenanceLabel: 'Maintenance',
+        accessibilityLabel: 'Accessibility',
+        visualAspectsLabel: 'Visual Aspects',
+        submitButton: 'Submit Rating'
+      },
+      sr: {
+        pageTitle: 'A/D TIV Ocjena Čistoće WC-a',
+        header: 'A/D TIV Ocjena Čistoće WC-a',
+        ratingPrompt: 'Molimo ocjenite čistoću i kvalitet WC-a pre nego što odete:',
+        flightNumberLabel: 'Broj Leta',
+        cleanlinessLabel: 'Čistoća',
+        generalCleanlinessLabel: 'Opšta čistoća',
+        toiletHygieneLabel: 'Higijena WC školjke',
+        sanitarySuppliesLabel: 'Sanitetski pribor',
+        odorLabel: 'Miris',
+        maintenanceLabel: 'Održavanje',
+        accessibilityLabel: 'Pristupačnost',
+        visualAspectsLabel: 'Vizualni aspekti',
+        submitButton: 'Pošaljite Ocenu'
+      }
+    };
+
+    const smileyButtons = document.querySelectorAll('.smiley-btn');
+    const inputs = {
+      cleanliness: document.getElementById('cleanliness'),
+      generalCleanliness: document.getElementById('general-cleanliness'),
+      toiletHygiene: document.getElementById('toilet-hygiene'),
+      sanitarySupplies: document.getElementById('sanitary-supplies'),
+      odor: document.getElementById('odor'),
+      maintenance: document.getElementById('maintenance'),
+      accessibility: document.getElementById('accessibility'),
+      visualAspects: document.getElementById('visual-aspects')
+    };
+
+    smileyButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const rating = e.target.getAttribute('data-rating');
+        const aspect = e.target.getAttribute('data-aspect');
+
+        // Clear previous selections for this aspect
+        document.querySelectorAll(`button[data-aspect="${aspect}"]`).forEach(button => {
+          button.classList.remove('selected');
+        });
+
+        // Select the clicked button
+        btn.classList.add('selected');
+
+        // Set the corresponding input value
+        inputs[aspect].value = rating;
+      });
+    });
+
+    // Theme Toggle Script
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('bg-dark');
+      document.body.classList.toggle('bg-light');
+      // Toggle navbar colors
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('navbar-dark');
+      navbar.classList.toggle('navbar-light');
+    });
+
+    // Language Dropdown Toggle
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageButton = languageDropdown.previousElementSibling;
+    languageButton.addEventListener('click', () => {
+      languageDropdown.classList.toggle('hidden');
+    });
+
+    // Language Change Event Listener
+    const languageLinks = document.querySelectorAll('.language-dropdown a');
+    languageLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = e.target.getAttribute('data-lang');
+        updateLanguage(lang);
+      });
+    });
+
+    // Update Language Function
+    function updateLanguage(lang) {
+      document.getElementById('page-title').textContent = translations[lang].pageTitle;
+      document.getElementById('page-header').textContent = translations[lang].header;
+      document.getElementById('rating-prompt').textContent = translations[lang].ratingPrompt;
+      document.getElementById('flight-number-label').textContent = translations[lang].flightNumberLabel;
+      document.getElementById('cleanliness-label').textContent = translations[lang].cleanlinessLabel;
+      document.getElementById('general-cleanliness-label').textContent = translations[lang].generalCleanlinessLabel;
+      document.getElementById('toilet-hygiene-label').textContent = translations[lang].toiletHygieneLabel;
+      document.getElementById('sanitary-supplies-label').textContent = translations[lang].sanitarySuppliesLabel;
+      document.getElementById('odor-label').textContent = translations[lang].odorLabel;
+      document.getElementById('maintenance-label').textContent = translations[lang].maintenanceLabel;
+      document.getElementById('accessibility-label').textContent = translations[lang].accessibilityLabel;
+      document.getElementById('visual-aspects-label').textContent = translations[lang].visualAspectsLabel;
+      document.getElementById('submit-btn').textContent = translations[lang].submitButton;
+      document.getElementById('language-name').textContent = lang === 'en' ? 'English' : 'Serbian';
+    }
+  </script>
+
+</body>
+</html>
