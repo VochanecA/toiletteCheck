@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>A/D Tiv Toilette Rating</title> <!-- Or any default title you want -->
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.4.7/flowbite.min.css" rel="stylesheet" />
     
     <style>
+
+        
         .smiley {
             font-size: 2.5rem;
             cursor: pointer;
@@ -104,6 +107,36 @@
             text-align: center;
             font-size: 1.25rem;
         }
+
+        /* animacija za peticu*/
+        @keyframes confetti {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-500px); opacity: 0; }
+}
+
+@keyframes stars {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2); }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: confetti 4s forwards;
+}
+
+.stars {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('images/star2.png') no-repeat center center;
+    background-size: contain;
+    animation: stars 1.5s forwards;
+}
+
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.4.7/flowbite.min.js"></script>
 </head>
@@ -157,7 +190,7 @@
             </span>
         </div>
 
-        <p class="mt-4 text-black dark:text-white" id="feedback-prompt">We value your feedback! Please take a moment to rate our toilet services. Your input is essential for us to improve and provide a better experience.</p>
+        <p class="mt-4 text-black dark:text-white" id="feedback-prompt">We value your feedback. Please take a moment to rate our toilet services. Your input is essential for us to improve and provide a better experience.Thank you.</p>
 
         <!-- Rating Cards -->
         <form>
@@ -213,65 +246,88 @@
         let selectedRatings = {};
 
         function updateLanguage(language) {
-            const translations = {
-                en: {
-                    feedbackHeader: "Select Language",
-                    feedbackPrompt: "We value your feedback! Please take a moment to rate our toilet services. Your input is essential for us to improve and provide a better experience.",
-                    cleanliness: "Cleanliness",
-                    facilities: "Facilities",
-                    service: "Service",
-                    smell: "Smell"
-                },
-                sr: {
-                    feedbackHeader: "Izaberite jezik",
-                    feedbackPrompt: "Cijenimo vaše mišljenje! Molimo vas da odvojite trenutak i ocijenite naše toaletne usluge. Vaš doprinos nam je neophodan kako bismo unaprijedili našu uslugu i njen kvalitet.",
-                    cleanliness: "Čistoća",
-                    facilities: "Sadržaji",
-                    service: "Usluga",
-                    smell: "Miris"
-                },
-                tr: {
-                    feedbackHeader: "Dil Seçin",
-                    feedbackPrompt: "Geri bildiriminize değer veriyoruz! Lütfen tuvalet hizmetlerimizi değerlendirmek için bir dakikanızı ayırın. Geri bildiriminiz, deneyimi geliştirmemiz için çok önemli.",
-                    cleanliness: "Temizlik",
-                    facilities: "Tesisler",
-                    service: "Servis",
-                    smell: "Koku"
-                },
-                ru: {
-                    feedbackHeader: "Выберите язык",
-                    feedbackPrompt: "Мы ценим ваш отзыв! Пожалуйста, уделите минуту, чтобы оценить наши туалетные услуги. Ваше мнение важно для улучшения нашего сервиса.",
-                    cleanliness: "Чистота",
-                    facilities: "Оборудование",
-                    service: "Обслуживание",
-                    smell: "Запах"
-                },
-                he: {
-                    feedbackHeader: "בחר שפה",
-                    feedbackPrompt: "אנחנו מעריכים את המשוב שלך! אנא הקדש רגע לדרג את שירותי השירותים שלנו. המשוב שלך חשוב לנו לשיפור החוויה.",
-                    cleanliness: "ניקיון",
-                    facilities: "מתקנים",
-                    service: "שירות",
-                    smell: "ריח"
-                },
-                de: {
-                    feedbackHeader: "Sprache auswählen",
-                    feedbackPrompt: "Wir schätzen Ihr Feedback! Bitte nehmen Sie sich einen Moment Zeit, um unsere Toiletten zu bewerten. Ihr Feedback ist entscheidend für Verbesserungen.",
-                    cleanliness: "Sauberkeit",
-                    facilities: "Einrichtungen",
-                    service: "Service",
-                    smell: "Geruch"
-                }
-            };
+    const translations = {
+        en: {
+            feedbackHeader: "Select Language",
+            feedbackPrompt: "We value your feedback! Please take a moment to rate our toilet services. Your input is essential for us to improve and provide a better experience.",
+            cleanliness: "Cleanliness",
+            facilities: "Facilities",
+            service: "Service",
+            smell: "Smell",
+            title: "A/D Tiv Toilette Rating",// Title in English
+            navbarText: "A/D Tiv Toilette Rating"
+        },
+        sr: {
+            feedbackHeader: "Izaberite jezik",
+            feedbackPrompt: "Cijenimo vaše mišljenje. Molimo vas da odvojite trenutak i ocijenite naše toaletne usluge. Vaš doprinos nam je neophodan kako bismo unaprijedili našu uslugu i njen kvalitet. Hvala.",
+            cleanliness: "Čistoća",
+            facilities: "Sadržaji",
+            service: "Usluga",
+            smell: "Miris",
+            title: "Ocjena toaleta A/D Tiv", 
+            navbarText: "Ocjena toaleta A/D Tiv", 
+        },
+        tr: {
+            feedbackHeader: "Dil Seçin",
+            feedbackPrompt: "Geri bildiriminize değer veriyoruz! Lütfen tuvalet hizmetlerimizi değerlendirmek için bir dakikanızı ayırın.",
+            cleanliness: "Temizlik",
+            facilities: "Tesisler",
+            service: "Servis",
+            smell: "Koku",
+            title: "A/D Tiv Tuvalet Değerlendirme", // Title in Turkish
+            navbarText: "A/D Tiv Tuvalet Değerlendirme" // Title in Turkish
+        },
+        ru: {
+            feedbackHeader: "Выберите язык",
+            feedbackPrompt: "Мы ценим ваш отзыв! Пожалуйста, уделите минуту, чтобы оценить наши туалетные услуги.",
+            cleanliness: "Чистота",
+            facilities: "Оборудование",
+            service: "Обслуживание",
+            smell: "Запах",
+            title: "Рейтинг туалетов A/D Tiv", // Title in Russian
+            navbarText: "Рейтинг туалетов A/D Tiv" // Title in Russian
+        },
+        he: {
+            feedbackHeader: "בחר שפה",
+            feedbackPrompt: "אנחנו מעריכים את המשוב שלך! אנא הקדש רגע לדרג את שירותי השירותים שלנו.",
+            cleanliness: "ניקיון",
+            facilities: "מתקנים",
+            service: "שירות",
+            smell: "ריח",
+            title: "דירוג השירותים של A/D Tiv", // Title in Hebrew
+            navbarText: "דירוג השירותים של A/D Tiv" // Title in Hebrew
 
-            // Update the text content with selected language translations
-            document.getElementById('feedback-header').textContent = translations[language].feedbackHeader;
-            document.getElementById('feedback-prompt').textContent = translations[language].feedbackPrompt;
-            document.getElementById('cleanliness-label').textContent = translations[language].cleanliness;
-            document.getElementById('facilities-label').textContent = translations[language].facilities;
-            document.getElementById('service-label').textContent = translations[language].service;
-            document.getElementById('smell-label').textContent = translations[language].smell;
+        },
+        de: {
+            feedbackHeader: "Sprache auswählen",
+            feedbackPrompt: "Wir schätzen Ihr Feedback! Bitte nehmen Sie sich einen Moment Zeit, um unsere Toiletten zu bewerten.",
+            cleanliness: "Sauberkeit",
+            facilities: "Einrichtungen",
+            service: "Service",
+            smell: "Geruch",
+            title: "Bewertung der A/D Tiv Toiletten", // Title in German
+            navbarText: "Bewertung der A/D Tiv Toiletten" // Title in German
         }
+    };
+
+    // Update the text content for the selected language
+    document.getElementById('feedback-header').textContent = translations[language].feedbackHeader;
+    document.getElementById('feedback-prompt').textContent = translations[language].feedbackPrompt;
+    document.getElementById('cleanliness-label').textContent = translations[language].cleanliness;
+    document.getElementById('facilities-label').textContent = translations[language].facilities;
+    document.getElementById('service-label').textContent = translations[language].service;
+    document.getElementById('smell-label').textContent = translations[language].smell;
+    document.getElementById('page-header').textContent = translations[language].navbarText; // Update navbar text
+
+
+    
+    // Dynamically update the page title
+    document.title = translations[language].title;
+       // Debugging: Ensure the function is called correctly
+     //  console.log("Updating language to:", language);
+   // console.log("Setting title to:", translations[language].title);
+
+}
 
         function updateAverageRating() {
             const cards = document.querySelectorAll('.card');
@@ -329,6 +385,55 @@
         }
 
         updateThemeIcon();
+
+        // animacija
+        document.querySelectorAll('.smiley').forEach(smiley => {
+    smiley.addEventListener('click', function() {
+        const card = this.closest('.card');
+        card.querySelectorAll('.smiley').forEach(s => s.classList.remove('selected'));
+        this.classList.add('selected');
+        updateAverageRating();
+        
+        // Check if the clicked smiley has a rating of 5
+        if (this.getAttribute('data-rating') === '5') {
+            // Add animation effects
+            const rect = this.getBoundingClientRect();
+            createConfetti(rect);
+            createStars(rect);
+        }
+    });
+});
+
+function createConfetti(rect) {
+    for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = `${rect.left + Math.random() * rect.width}px`;
+        confetti.style.top = `${rect.top + Math.random() * rect.height}px`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 4000); // Match the duration of the animation
+    }
+}
+
+function createStars(rect) {
+    for (let i = 0; i < 10; i++) {
+        const star = document.createElement('div');
+        star.className = 'stars';
+        star.style.left = `${rect.left + Math.random() * rect.width}px`;
+        star.style.top = `${rect.top + Math.random() * rect.height}px`;
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+            star.remove();
+        }, 1500); // Match the duration of the animation
+    }
+}
+
+
+
     </script>
 </body>
 </html>
