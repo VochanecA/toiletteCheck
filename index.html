@@ -478,5 +478,11 @@ function createStars(rect) {
 
 
     </script>
+    <script>
+        // Immediately apply dark theme to prevent flash of light theme
+        if (!localStorage.theme || localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
 </body>
 </html>
