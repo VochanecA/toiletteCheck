@@ -247,70 +247,79 @@
         let selectedRatings = {};
 
         function updateLanguage(language) {
-    const translations = {
-        en: {
-            feedbackHeader: "Select Language",
-            feedbackPrompt: "We value your feedback! Please take a moment to rate our toilet services. Your input is essential for us to improve and provide a better experience.",
-            cleanliness: "Cleanliness",
-            facilities: "Facilities",
-            service: "Service",
-            smell: "Smell",
-            title: "A/D Tiv Toilette Rating",// Title in English
-            navbarText: "A/D Tiv Toilette Rating"
-        },
-        sr: {
-            feedbackHeader: "Izaberite jezik",
-            feedbackPrompt: "Cijenimo vaše mišljenje. Molimo vas da odvojite trenutak i ocijenite naše toaletne usluge. Vaš doprinos nam je neophodan kako bismo unaprijedili našu uslugu i njen kvalitet. Hvala.",
-            cleanliness: "Čistoća",
-            facilities: "Sadržaji",
-            service: "Usluga",
-            smell: "Miris",
-            title: "Ocjena toaleta A/D Tiv", 
-            navbarText: "Ocjena toaleta A/D Tiv", 
-        },
-        tr: {
-            feedbackHeader: "Dil Seçin",
-            feedbackPrompt: "Geri bildiriminize değer veriyoruz! Lütfen tuvalet hizmetlerimizi değerlendirmek için bir dakikanızı ayırın.",
-            cleanliness: "Temizlik",
-            facilities: "Tesisler",
-            service: "Servis",
-            smell: "Koku",
-            title: "A/D Tiv Tuvalet Değerlendirme", // Title in Turkish
-            navbarText: "A/D Tiv Tuvalet Değerlendirme" // Title in Turkish
-        },
-        ru: {
-            feedbackHeader: "Выберите язык",
-            feedbackPrompt: "Мы ценим ваш отзыв! Пожалуйста, уделите минуту, чтобы оценить наши туалетные услуги.",
-            cleanliness: "Чистота",
-            facilities: "Оборудование",
-            service: "Обслуживание",
-            smell: "Запах",
-            title: "Рейтинг туалетов A/D Tiv", // Title in Russian
-            navbarText: "Рейтинг туалетов A/D Tiv" // Title in Russian
-        },
-        he: {
-            feedbackHeader: "בחר שפה",
-            feedbackPrompt: "אנחנו מעריכים את המשוב שלך! אנא הקדש רגע לדרג את שירותי השירותים שלנו.",
-            cleanliness: "ניקיון",
-            facilities: "מתקנים",
-            service: "שירות",
-            smell: "ריח",
-            title: "דירוג השירותים של A/D Tiv", // Title in Hebrew
-            navbarText: "דירוג השירותים של A/D Tiv" // Title in Hebrew
-
-        },
-        de: {
-            feedbackHeader: "Sprache auswählen",
-            feedbackPrompt: "Wir schätzen Ihr Feedback! Bitte nehmen Sie sich einen Moment Zeit, um unsere Toiletten zu bewerten.",
-            cleanliness: "Sauberkeit",
-            facilities: "Einrichtungen",
-            service: "Service",
-            smell: "Geruch",
-            title: "Bewertung der A/D Tiv Toiletten", // Title in German
-            navbarText: "Bewertung der A/D Tiv Toiletten" // Title in German
-        }
-    };
-
+            const translations = {
+    en: {
+        feedbackHeader: "Select Language",
+        feedbackPrompt: "We value your feedback. Please take a moment to rate our toilet services. Your input is essential for us to improve and provide a better experience. Thank you.",
+        cleanliness: "Cleanliness",
+        facilities: "Facilities",
+        service: "Service",
+        smell: "Smell",
+        title: "A/D Tiv Toilet Rating", // Title in English
+        navbarText: "A/D Tiv Toilet Rating"
+    },
+    sr: {
+        feedbackHeader: "Izaberite jezik",
+        feedbackPrompt: "Cijenimo vaše mišljenje. Molimo vas da odvojite trenutak i ocijenite naše toaletne usluge. Vaš doprinos nam je neophodan kako bismo unaprijedili našu uslugu i njen kvalitet. Hvala.",
+        cleanliness: "Čistoća",
+        facilities: "Sadržaji",
+        service: "Usluga",
+        smell: "Miris",
+        title: "Ocjena toaleta A/D Tiv", 
+        navbarText: "Ocjena toaleta A/D Tiv"
+    },
+    tr: {
+        feedbackHeader: "Dil Seçin",
+        feedbackPrompt: "Geri bildiriminize değer veriyoruz.Lütfen tuvalet hizmetlerimizi değerlendirmek için bir dakikanızı ayırın. Teşekkür ederiz.",
+        cleanliness: "Temizlik",
+        facilities: "Tesisler",
+        service: "Servis",
+        smell: "Koku",
+        title: "A/D Tiv Tuvalet Değerlendirme", // Title in Turkish
+        navbarText: "A/D Tiv Tuvalet Değerlendirme"
+    },
+    ru: {
+        feedbackHeader: "Выберите язык",
+        feedbackPrompt: "Мы ценим ваш отзыв. Пожалуйста, уделите минуту, чтобы оценить наши туалетные услуги. Спасибо.",
+        cleanliness: "Чистота",
+        facilities: "Оборудование",
+        service: "Обслуживание",
+        smell: "Запах",
+        title: "Рейтинг туалетов A/D Tiv", // Title in Russian
+        navbarText: "Рейтинг туалетов A/D Tiv"
+    },
+    he: {
+        feedbackHeader: "בחר שפה",
+        feedbackPrompt: "אנחנו מעריכים את המשוב שלך! אנא הקדש רגע לדרג את שירותי השירותים שלנו. תודה.",
+        cleanliness: "ניקיון",
+        facilities: "מתקנים",
+        service: "שירות",
+        smell: "ריח",
+        title: "דירוג השירותים של A/D Tiv", // Title in Hebrew
+        navbarText: "דירוג השירותים של A/D Tiv"
+    },
+    de: {
+        feedbackHeader: "Sprache auswählen",
+        feedbackPrompt: "Wir schätzen Ihr Feedback. Bitte nehmen Sie sich einen Moment Zeit, um unsere Toiletten zu bewerten. Vielen Dank.",
+        cleanliness: "Sauberkeit",
+        facilities: "Einrichtungen",
+        service: "Service",
+        smell: "Geruch",
+        title: "Bewertung der A/D Tiv Toiletten", // Title in German
+        navbarText: "Bewertung der A/D Tiv Toiletten"
+    },
+    
+    fr: {
+        feedbackHeader: "Sélectionner la langue",
+        feedbackPrompt: "Nous apprécions vos retours. Veuillez prendre un moment pour évaluer nos services de toilettes. Vos commentaires sont essentiels pour nous améliorer et offrir une meilleure expérience. Merci.",
+        cleanliness: "Propreté",
+        facilities: "Installations",
+        service: "Service",
+        smell: "Odeur",
+        title: "Évaluation des toilettes A/D Tiv", // Title in French
+        navbarText: "Évaluation des toilettes A/D Tiv"
+    }
+};
     // Update the text content for the selected language
     document.getElementById('feedback-header').textContent = translations[language].feedbackHeader;
     document.getElementById('feedback-prompt').textContent = translations[language].feedbackPrompt;
