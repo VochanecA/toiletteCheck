@@ -133,7 +133,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    background: url('star2.png') no-repeat center center;
+    background: url('images/star2.png') no-repeat center center;
     background-size: contain;
     animation: stars 1.5s forwards;
 }
@@ -169,7 +169,7 @@
     <!-- Feedback Section -->
     <div class="bg-orange-500 p-4 rounded-lg shadow-lg text-black w-full max-w-4xl mx-auto">
         <h2 class="text-black font-bold text-lg mb-4" id="feedback-header">Select Language</h2>
-       <div class="flex justify-center flex-wrap gap-2">
+        <div class="flex justify-center flex-wrap gap-2">
             <!-- Language Options -->
             <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 cursor-pointer" onclick="updateLanguage('en')">
                 <img src="https://flagcdn.com/16x12/us.png" alt="English" class="w-6 h-4 inline-block" />
@@ -193,10 +193,11 @@
                 <img src="https://flagcdn.com/16x12/fr.png" alt="French" class="w-6 h-4 inline-block" />
             </span>
         </div>
-<p class="mt-4 text-black dark:text-white" id="feedback-prompt">
-    We value your feedback. Please take a moment to rate our toilet services. Your input is essential for our improvement and providing a better experience. Thank you.
-    <span style="font-size: smaller; color: grey; display: block;">The evaluation is in accordance with the Quality Management System, 3.6.2a.</span>
-</p>
+
+        <p class="mt-4 text-black dark:text-white" id="feedback-prompt">
+            We value your feedback. Please take a moment to rate our toilet services. Your input is essential for our improvement and providing a better experience. Thank you.
+            <span style="font-size: smaller; color: grey; display: block;">The evaluation is in accordance with the Quality Management System, 3.6.2a.</span>
+        </p>
         <!-- Rating Cards -->
         <form>
             <div class="card bg-purple" data-card-id="cleanliness">
@@ -260,7 +261,8 @@
         service: "Service",
         smell: "Smell",
         title: "A/D Tiv Toilet Rating", // Title in English
-        navbarText: "A/D Tiv Toilet Rating"
+        navbarText: "A/D Tiv Toilet Rating",
+        evaluationNote: "The evaluation is in accordance with the Quality Management System, 3.6.2a."
     },
     sr: {
         feedbackHeader: "Izaberite jezik",
@@ -270,17 +272,21 @@
         service: "Usluga",
         smell: "Miris",
         title: "Ocjena toaleta A/D Tiv", 
-        navbarText: "Ocjena toaleta A/D Tiv"
+        navbarText: "Ocjena toaleta A/D Tiv",
+        evaluationNote: "Evaluacija je u skladu sa Sistemom upravljanja kvalitetom, 3.6.2a."
+
     },
     tr: {
         feedbackHeader: "Dil Seçin",
-        feedbackPrompt: "Geri bildiriminize değer veriyoruz.Lütfen tuvalet hizmetlerimizi değerlendirmek için bir dakikanızı ayırın. Teşekkür ederiz.",
+        feedbackPrompt: "Geri bildiriminize değer veriyoruz. Lütfen tuvalet hizmetlerimizi değerlendirmek için bir dakikanızı ayırın. Teşekkür ederiz.",
         cleanliness: "Temizlik",
         facilities: "Tesisler",
         service: "Servis",
         smell: "Koku",
         title: "A/D Tiv Tuvalet Değerlendirme", // Title in Turkish
-        navbarText: "A/D Tiv Tuvalet Değerlendirme"
+        navbarText: "A/D Tiv Tuvalet Değerlendirme",
+        evaluationNote: "Değerlendirme, Kalite Yönetim Sistemi 3.6.2a'ya uygundur."
+
     },
     ru: {
         feedbackHeader: "Выберите язык",
@@ -290,7 +296,9 @@
         service: "Обслуживание",
         smell: "Запах",
         title: "Рейтинг туалетов A/D Tiv", // Title in Russian
-        navbarText: "Рейтинг туалетов A/D Tiv"
+        navbarText: "Рейтинг туалетов A/D Tiv",
+        evaluationNote: "Оценка проводится в соответствии с Системой менеджмента качества, 3.6.2a."
+
     },
     he: {
         feedbackHeader: "בחר שפה",
@@ -300,7 +308,9 @@
         service: "שירות",
         smell: "ריח",
         title: "דירוג השירותים של A/D Tiv", // Title in Hebrew
-        navbarText: "דירוג השירותים של A/D Tiv"
+        navbarText: "דירוג השירותים של A/D Tiv",
+        evaluationNote: "ההערכה היא בהתאם למערכת ניהול האיכות, 3.6.2a."
+
     },
     de: {
         feedbackHeader: "Sprache auswählen",
@@ -310,9 +320,10 @@
         service: "Service",
         smell: "Geruch",
         title: "Bewertung der A/D Tiv Toiletten", // Title in German
-        navbarText: "Bewertung der A/D Tiv Toiletten"
+        navbarText: "Bewertung der A/D Tiv Toiletten",
+        evaluationNote: "Die Bewertung erfolgt gemäß dem Qualitätsmanagementsystem, 3.6.2a."
+
     },
-    
     fr: {
         feedbackHeader: "Sélectionner la langue",
         feedbackPrompt: "Nous apprécions vos retours. Veuillez prendre un moment pour évaluer nos services de toilettes. Vos commentaires sont essentiels pour nous améliorer et offrir une meilleure expérience. Merci.",
@@ -321,12 +332,19 @@
         service: "Service",
         smell: "Odeur",
         title: "Évaluation des toilettes A/D Tiv", // Title in French
-        navbarText: "Évaluation des toilettes A/D Tiv"
+        navbarText: "Évaluation des toilettes A/D Tiv",
+        evaluationNote: "L'évaluation est conforme au Système de Management de la Qualité, 3.6.2a."
+
+
     }
 };
+
     // Update the text content for the selected language
     document.getElementById('feedback-header').textContent = translations[language].feedbackHeader;
-    document.getElementById('feedback-prompt').textContent = translations[language].feedbackPrompt;
+// Assuming 'language' is defined and you have a translations object
+document.getElementById('feedback-prompt').innerHTML = 
+    translations[language].feedbackPrompt + 
+    "<br><span style='font-size: smaller; color: grey;'>" + translations[language].evaluationNote + "</span>";
     document.getElementById('cleanliness-label').textContent = translations[language].cleanliness;
     document.getElementById('facilities-label').textContent = translations[language].facilities;
     document.getElementById('service-label').textContent = translations[language].service;
